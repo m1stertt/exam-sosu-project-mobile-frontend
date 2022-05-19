@@ -4,6 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Github/exam-sosu-project-mobile-frontend/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
+        <entry key="..\:/Github/exam-sosu-project-mobile-frontend/app/src/main/res/layout/activity_student.xml" value="0.18802083333333333" />
+        <entry key="..\:/Github/exam-sosu-project-mobile-frontend/app/src/main/res/layout/content_student.xml" value="0.18802083333333333" />
+        <entry key="..\:/Github/exam-sosu-project-mobile-frontend/app/src/main/res/layout/fragment_first.xml" value="0.18802083333333333" />
+        <entry key="..\:/Github/exam-sosu-project-mobile-frontend/app/src/main/res/xml/network_security_config.xml" value="0.1" />
       </map>
     </option>
   </component>
