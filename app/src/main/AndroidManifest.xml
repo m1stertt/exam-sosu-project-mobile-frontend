@@ -16,19 +16,10 @@
         android:theme="@style/Theme.Examsosuprojectmobilefrontend"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".TeacherActivity"
-            android:exported="false"
-            android:label="@string/title_activity_teacher"
-            android:theme="@style/Theme.Examsosuprojectmobilefrontend.NoActionBar" />
-        <activity
             android:name=".StudentActivity"
             android:exported="false"
             android:label="@string/title_activity_student"
             android:theme="@style/Theme.Examsosuprojectmobilefrontend.NoActionBar" />
-        <activity
-            android:name=".ui.login.LoginActivity"
-            android:exported="false"
-            android:label="@string/title_activity_login" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

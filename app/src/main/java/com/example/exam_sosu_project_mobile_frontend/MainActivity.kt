@@ -22,14 +22,12 @@ class MainActivity : AppCompatActivity() {
         val apiInterface = ApiInterface.create(this);
         val sharedPreferences = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         val token=sharedPreferences.getString("token",null);
-        val linearLayout:LinearLayout = findViewById(R.id.activity_main_linearLayout);
         if (token != null) {
-            linearLayout.visibility=View.GONE;
             //Already logged in, attempt to retrieve user.
             apiInterface.getLogin().enqueue(object : Callback<Login> {
                 override fun onResponse(call: Call<Login>?, response: Response<Login>?) {
                     if (response != null&&response.code()==200) {
-                        intent= Intent(this@MainActivity, TeacherActivity::class.java);
+                        intent= Intent(this@MainActivity, StudentActivity::class.java);
                         startActivity(intent)
                         return;
                     }else{
@@ -42,13 +40,12 @@ class MainActivity : AppCompatActivity() {
                     initiate();
                 }
             })
+        }else{
+            initiate();
         }
-
     }
 
     private fun initiate(){
-        val linearLayout:LinearLayout = findViewById(R.id.activity_main_linearLayout);
-        linearLayout.visibility=View.VISIBLE;
         val usernameEditText: EditText = findViewById(R.id.activity_main_usernameEditText)
         val passwordEditText: EditText = findViewById(R.id.activity_main_passwordEditText)
         val loginButton: Button = findViewById(R.id.activity_main_loginButton)
@@ -67,7 +64,7 @@ class MainActivity : AppCompatActivity() {
                         if (token != null) {
                             val sharedPreferences = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE)
                             sharedPreferences.edit().putString("token", token).commit();
-                            intent= Intent(this@MainActivity, TeacherActivity::class.java);
+                            intent= Intent(this@MainActivity, StudentActivity::class.java);
                             startActivity(intent)
                         }
                     }else{
