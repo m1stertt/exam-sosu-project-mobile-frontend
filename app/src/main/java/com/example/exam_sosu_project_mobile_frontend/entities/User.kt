@@ -1,4 +1,4 @@
-package com.example.exam_sosu_project_mobile_frontend
+package com.example.exam_sosu_project_mobile_frontend.entities
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
