@@ -25,7 +25,6 @@ class MainActivity : AppCompatActivity() {
         val linearLayout:LinearLayout = findViewById(R.id.activity_main_linearLayout);
         if (token != null) {
             linearLayout.visibility=View.GONE;
-            Log.d("Token",token)
             //Already logged in, attempt to retrieve user.
             apiInterface.getLogin().enqueue(object : Callback<Login> {
                 override fun onResponse(call: Call<Login>?, response: Response<Login>?) {
@@ -34,12 +33,12 @@ class MainActivity : AppCompatActivity() {
                         startActivity(intent)
                         return;
                     }else{
-                        linearLayout.visibility=View.VISIBLE;
+                        sharedPreferences.edit().remove("token").commit();
                         initiate();
                     }
                 }
                 override fun onFailure(call: Call<Login>?, t: Throwable?) {
-                    linearLayout.visibility=View.VISIBLE;
+                    sharedPreferences.edit().remove("token").commit();
                     initiate();
                 }
             })
@@ -48,6 +47,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initiate(){
+        val linearLayout:LinearLayout = findViewById(R.id.activity_main_linearLayout);
+        linearLayout.visibility=View.VISIBLE;
         val usernameEditText: EditText = findViewById(R.id.activity_main_usernameEditText)
         val passwordEditText: EditText = findViewById(R.id.activity_main_passwordEditText)
         val loginButton: Button = findViewById(R.id.activity_main_loginButton)
@@ -62,20 +63,14 @@ class MainActivity : AppCompatActivity() {
             apiInterfaceLogin.enqueue( object : Callback<Login> {
                 override fun onResponse(call: Call<Login>?, response: Response<Login>?) {
                     if (response != null) {
-                        Log.d("Login",response.headers().toString())
                         var token= response.headers().get("Set-Cookie")?.substringBefore(';');
                         if (token != null) {
-                            Log.d("Login", token)
-                            val sharedPreferences = getSharedPreferences(
-                                getString(R.string.preference_file_key), Context.MODE_PRIVATE
-                            )
-
+                            val sharedPreferences = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE)
                             sharedPreferences.edit().putString("token", token).commit();
                             intent= Intent(this@MainActivity, TeacherActivity::class.java);
                             startActivity(intent)
                         }
                     }else{
-                        Log.d("Login","Token null");
                         //Failed login @todo
                     }
                 }
