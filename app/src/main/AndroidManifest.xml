@@ -16,6 +16,12 @@
         android:theme="@style/Theme.Examsosuprojectmobilefrontend"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.CitizenViewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.LoginActivity"
+            android:exported="false" />
+        <activity
             android:name=".StudentActivity"
             android:exported="false"
             android:label="@string/title_activity_student"

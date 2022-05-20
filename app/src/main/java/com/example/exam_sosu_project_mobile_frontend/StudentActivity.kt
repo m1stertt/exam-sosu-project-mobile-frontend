@@ -50,9 +50,9 @@ class StudentActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id: Int = item.itemId
         if (id == R.id.action_logout) {
-            val sharedPreferences = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
-            sharedPreferences.edit().remove("token").commit();
-            finish();
+            val sharedPreferences = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE)
+            sharedPreferences.edit().remove("token").apply()
+            finish()
         }
         return super.onOptionsItemSelected(item)
     }

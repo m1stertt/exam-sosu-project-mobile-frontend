@@ -9,61 +9,11 @@
     android:background="#000">
 
     <androidx.cardview.widget.CardView
-        android:layout_margin="64dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_margin="64dp"
+        android:background="#fff"
         card_view:cardCornerRadius="8dp"
-        card_view:cardElevation="8dp"
-        android:background="#fff">
-
-        <LinearLayout
-            android:id="@+id/activity_main_linearLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="24dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="@string/login_form_title"
-                android:textAlignment="center"
-                android:textSize="36sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/login_form_username"
-                android:textSize="22sp" />
-
-            <EditText
-                android:id="@+id/activity_main_usernameEditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/login_form_password"
-                android:textSize="22sp" />
-
-            <EditText
-                android:id="@+id/activity_main_passwordEditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword" />
-
-            <Button
-                android:id="@+id/activity_main_loginButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/login_form_login"
-                android:textSize="22sp" />
-
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
+        card_view:cardElevation="8dp" />
 
 </LinearLayout>
