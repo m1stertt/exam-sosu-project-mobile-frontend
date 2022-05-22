@@ -27,7 +27,7 @@ interface ApiInterface {
 
     companion object {
 
-        var BASE_URL = "http://10.0.2.2:3000"
+        private var BASE_URL = "http://10.0.2.2:3000"
 
         fun create(context:Context): ApiInterface {
 
@@ -36,11 +36,11 @@ interface ApiInterface {
                 .baseUrl("$BASE_URL/")
                 .client(OkHttpClient.Builder()
                 .addInterceptor { chain ->
-                    val sharedPreferences = context.getSharedPreferences(context.getString(R.string.preference_file_key), Context.MODE_PRIVATE);
-                    val token=sharedPreferences.getString("token",null);
-                    val request = chain.request().newBuilder();
+                    val sharedPreferences = context.getSharedPreferences(context.getString(R.string.preference_file_key), Context.MODE_PRIVATE)
+                    val token=sharedPreferences.getString("token",null)
+                    val request = chain.request().newBuilder()
                     if(token!=null){
-                        request.addHeader("cookie",token);
+                        request.addHeader("cookie",token)
                     }
                     chain.proceed(request.build())
                 }.build()).build()

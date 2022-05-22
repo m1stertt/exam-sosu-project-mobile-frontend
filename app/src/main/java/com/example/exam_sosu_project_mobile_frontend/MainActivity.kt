@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         val apiInterface = ApiInterface.create(this)
         val sharedPreferences = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE)
         val token=sharedPreferences.getString("token",null)
-        if (token != null) { //Already logged in, attempt to retrieve user.
+        if (token != null) { //Found a session token, attempt to retrieve user.
             apiInterface.getLogin().enqueue(object : Callback<Login> {
                 override fun onResponse(call: Call<Login>?, response: Response<Login>?) {
                     if (response != null&&response.code()==200) {

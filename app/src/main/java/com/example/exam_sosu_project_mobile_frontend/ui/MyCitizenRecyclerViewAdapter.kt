@@ -1,6 +1,6 @@
 package com.example.exam_sosu_project_mobile_frontend.ui
 
-import android.util.Log
+import android.content.Intent
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -33,7 +33,10 @@ class MyCitizenRecyclerViewAdapter(
         val item = values[position]
         //holder.idView.text = item.id
         holder.contentView.text = item.content
-        holder.contentView.setOnClickListener {view-> Log.d("Test","Click"+position)}
+        holder.contentView.setOnClickListener {view->
+            val intent = Intent(view.context, CitizenViewActivity::class.java)
+            view.context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int = values.size

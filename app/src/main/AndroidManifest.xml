@@ -16,6 +16,9 @@
         android:theme="@style/Theme.Examsosuprojectmobilefrontend"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".MapsActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.CitizenViewActivity"
             android:exported="false" />
         <activity
