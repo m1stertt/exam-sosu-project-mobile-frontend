@@ -25,6 +25,9 @@ interface ApiInterface {
     @GET("citizens")
     fun getCitizens(): Call<List<Citizen>>
 
+    @GET("citizens/{id}")
+    fun getCitizen(@Path("id") id: Int): Call<Citizen>
+
     companion object {
 
         private var BASE_URL = "http://10.0.2.2:3000"

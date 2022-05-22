@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.exam_sosu_project_mobile_frontend.R
-import com.example.exam_sosu_project_mobile_frontend.placeholder.PlaceholderContent
+import com.example.exam_sosu_project_mobile_frontend.StudentActivity
 
 
 /**
@@ -39,7 +39,11 @@ class CitizenFragment : Fragment() {
                     columnCount <= 1 -> LinearLayoutManager(context)
                     else -> GridLayoutManager(context, columnCount)
                 }
-                adapter = MyCitizenRecyclerViewAdapter(PlaceholderContent.ITEMS)
+
+                if(activity is StudentActivity){
+                    adapter = MyCitizenRecyclerViewAdapter(arrayListOf())
+                }
+                //adapter = MyCitizenRecyclerViewAdapter(PlaceholderContent.ITEMS)
             }
         }
         return view

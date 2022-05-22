@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 @Entity
 data class Citizen(
@@ -13,4 +14,4 @@ data class Citizen(
     @ColumnInfo(name = "birthday") val birthday: String,
     @ColumnInfo(name = "civilStatus") val civilStatus: String,
     @Embedded val address: Address,
-)
+) : Serializable
