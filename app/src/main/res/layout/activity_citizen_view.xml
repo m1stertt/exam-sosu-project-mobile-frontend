@@ -33,18 +33,10 @@
             <ImageView
                 android:id="@+id/iconView"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="300dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_margin="20dp"
                 android:contentDescription="Profile picture of citizen"
                 tools:srcCompat="@tools:sample/avatars" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -115,14 +107,13 @@
                     android:text="Birthday:"
                     app:autoSizeTextType="uniform" />
 
-                <EditText
-                    android:id="@+id/editTextBirthday"
+                <Button
+                    android:id="@+id/editDateBtn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:ems="10"
-                    android:hint="Birthday"
-                    android:inputType="date" />
+                    android:onClick="showDatePickerDialog" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -155,7 +146,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp">
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="40dp">
 
                 <TextView
                     android:id="@+id/textView7"
