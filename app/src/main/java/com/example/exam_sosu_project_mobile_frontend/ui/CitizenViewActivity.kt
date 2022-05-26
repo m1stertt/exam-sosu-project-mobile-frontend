@@ -7,6 +7,7 @@ import android.graphics.Bitmap
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -69,6 +70,9 @@ class CitizenViewActivity : AppCompatActivity(), OnMapReadyCallback {
 
         binding.addImageBtn.setOnClickListener {
             dispatchTakePictureIntent()
+        }
+        binding.editDateBtn.setOnClickListener {
+            showDatePickerDialog()
         }
 
     }

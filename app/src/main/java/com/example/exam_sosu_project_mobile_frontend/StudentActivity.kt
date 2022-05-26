@@ -1,15 +1,18 @@
 package com.example.exam_sosu_project_mobile_frontend
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.recyclerview.widget.RecyclerView
 import com.example.exam_sosu_project_mobile_frontend.databinding.ActivityStudentBinding
 import com.example.exam_sosu_project_mobile_frontend.entities.Citizen
+import com.example.exam_sosu_project_mobile_frontend.ui.CitizenCreateActivity
 import com.example.exam_sosu_project_mobile_frontend.ui.CitizenFragment
 import com.example.exam_sosu_project_mobile_frontend.ui.MyCitizenRecyclerViewAdapter
 import com.google.android.material.snackbar.Snackbar
@@ -36,6 +39,12 @@ class StudentActivity : AppCompatActivity() {
         binding.fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
+        }
+
+        val btn=findViewById<Button>(R.id.createCitizenBtn)
+        btn.setOnClickListener {
+            val intent= Intent(it.context, CitizenCreateActivity::class.java)
+            startActivity(intent)
         }
 
         getCitizens()

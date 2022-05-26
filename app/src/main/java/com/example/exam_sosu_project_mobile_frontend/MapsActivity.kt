@@ -26,7 +26,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         i.putExtra("longitude",longitude);
         startActivity(i);
      */
-    override fun onMapReady(googleMap: GoogleMap?) {
+    override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
         val extras = intent.extras ?: return
         val address=extras.getString("address")
