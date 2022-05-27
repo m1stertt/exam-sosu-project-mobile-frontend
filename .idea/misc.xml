@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Github/exam-sosu-project-mobile-frontend/app/src/main/res/drawable/border.xml" value="0.2135" />
         <entry key="..\:/Github/exam-sosu-project-mobile-frontend/app/src/main/res/layout/activity_citizen_create.xml" value="0.1" />
         <entry key="..\:/Github/exam-sosu-project-mobile-frontend/app/src/main/res/layout/activity_citizen_view.xml" value="0.22" />
         <entry key="..\:/Github/exam-sosu-project-mobile-frontend/app/src/main/res/layout/activity_login.xml" value="0.24895833333333334" />
@@ -14,13 +15,16 @@
         <entry key="..\:/Github/exam-sosu-project-mobile-frontend/app/src/main/res/layout/citizen_item_list.xml" value="0.18802083333333333" />
         <entry key="..\:/Github/exam-sosu-project-mobile-frontend/app/src/main/res/layout/content_student.xml" value="0.2" />
         <entry key="..\:/Github/exam-sosu-project-mobile-frontend/app/src/main/res/layout/content_teacher.xml" value="0.1" />
+        <entry key="..\:/Github/exam-sosu-project-mobile-frontend/app/src/main/res/layout/fragment_date_picker.xml" value="0.19837537409149208" />
         <entry key="..\:/Github/exam-sosu-project-mobile-frontend/app/src/main/res/layout/fragment_first.xml" value="0.18802083333333333" />
         <entry key="..\:/Github/exam-sosu-project-mobile-frontend/app/src/main/res/layout/fragment_first2.xml" value="0.18802083333333333" />
         <entry key="..\:/Github/exam-sosu-project-mobile-frontend/app/src/main/res/layout/fragment_login.xml" value="0.1" />
         <entry key="..\:/Github/exam-sosu-project-mobile-frontend/app/src/main/res/layout/main_fragment.xml" value="0.20534904805077062" />
         <entry key="..\:/Github/exam-sosu-project-mobile-frontend/app/src/main/res/layout/menu_main.xml" value="0.20516304347826086" />
         <entry key="..\:/Github/exam-sosu-project-mobile-frontend/app/src/main/res/layout/primary_activity.xml" value="0.20534904805077062" />
+        <entry key="..\:/Github/exam-sosu-project-mobile-frontend/app/src/main/res/menu/map.xml" value="0.21419410004275333" />
         <entry key="..\:/Github/exam-sosu-project-mobile-frontend/app/src/main/res/menu/menu_main.xml" value="0.24895833333333334" />
+        <entry key="..\:/Github/exam-sosu-project-mobile-frontend/app/src/main/res/menu/menu_map.xml" value="0.21419410004275333" />
         <entry key="..\:/Github/exam-sosu-project-mobile-frontend/app/src/main/res/xml/network_security_config.xml" value="0.1" />
       </map>
     </option>

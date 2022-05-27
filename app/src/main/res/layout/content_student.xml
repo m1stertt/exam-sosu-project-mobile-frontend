@@ -25,10 +25,10 @@
         tools:layout_editor_absoluteY="26dp">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/welcomeText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Welcome back"
+            android:text="@string/welcome_message"
             android:textAlignment="center" />
 
         <LinearLayout
@@ -41,7 +41,7 @@
                 android:id="@+id/createCitizenBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Create New Citizen" />
+                android:text="@string/create_new_citizen" />
         </LinearLayout>
 
         <TextView
@@ -49,7 +49,7 @@
             android:layout_width="194dp"
             android:layout_height="46dp"
             android:layout_marginLeft="20dp"
-            android:text="Citizens list"
+            android:text="@string/citizens_list"
             android:textSize="34sp"
             app:autoSizeTextType="none" />
 

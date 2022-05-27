@@ -7,15 +7,11 @@ import android.graphics.Bitmap
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
-import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import com.example.exam_sosu_project_mobile_frontend.ApiInterface
+import com.example.exam_sosu_project_mobile_frontend.interfaces.ApiInterface
 import com.example.exam_sosu_project_mobile_frontend.DatePickerFragment
-import com.example.exam_sosu_project_mobile_frontend.DawaApiInterface
+import com.example.exam_sosu_project_mobile_frontend.interfaces.DawaApiInterface
 import com.example.exam_sosu_project_mobile_frontend.R
 import com.example.exam_sosu_project_mobile_frontend.databinding.ActivityCitizenViewBinding
 import com.example.exam_sosu_project_mobile_frontend.entities.Address
@@ -28,7 +24,6 @@ import com.google.gson.Gson
 import io.socket.client.IO
 import io.socket.client.Socket
 import io.socket.emitter.Emitter
-import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -57,7 +52,7 @@ class CitizenViewActivity : AppCompatActivity(), OnMapReadyCallback {
             mSocket.on("citizenUpdate", onCitizenUpdate)
             mSocket.connect()
         } catch (e: URISyntaxException) {
-            //@todo
+            //Unable to connect to socket, real-time updates will not be picked up.
         }
         binding = ActivityCitizenViewBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -87,16 +82,18 @@ class CitizenViewActivity : AppCompatActivity(), OnMapReadyCallback {
         Emitter.Listener { args ->
             this@CitizenViewActivity.runOnUiThread(Runnable {
                 val data = args[0] as JSONObject
-                val citizen=Gson().fromJson(data.toString(),Citizen::class.java);
+                val citizen=Gson().fromJson(data.toString(),Citizen::class.java)
                 Log.d("onCitizenUpdate",citizen.toString())
-                if(intent.extras!!.getInt("id")==data.getInt("id")){
-                    date = SimpleDateFormat("yyyy-MM-dd").parse(citizen.birthday)
-                    findViewById<EditText>(R.id.editTextFirstName).setText(citizen.firstName)
-                    findViewById<EditText>(R.id.editTextLastName).setText(citizen.lastName)
-                    findViewById<Button>(R.id.editDateBtn).text = citizen.birthday
-                    findViewById<EditText>(R.id.editTextCivilStatus).setText(citizen.civilStatus)
-                    dawaLookup(citizen.address)
+                if(intent.extras!!.getInt("id")!=data.getInt("id")) return@Runnable
+                val dat= SimpleDateFormat("yyyy-MM-dd",Locale.ENGLISH).parse(citizen.birthday)
+                if(dat!=null){
+                    date = dat
                 }
+                binding.editTextFirstName.setText(citizen.firstName)
+                binding.editTextLastName.setText(citizen.lastName)
+                binding.editDateBtn.text = citizen.birthday
+                binding.editTextCivilStatus.setText(citizen.civilStatus)
+                dawaLookup(citizen.address)
             })
         }
 
@@ -105,7 +102,7 @@ class CitizenViewActivity : AppCompatActivity(), OnMapReadyCallback {
         if (result.resultCode == Activity.RESULT_OK) {
             Log.d("IMAGE","IMAGE")
             val imageBitmap = result.data?.extras?.get("data") as Bitmap
-            findViewById<ImageView>(R.id.iconView).setImageBitmap(imageBitmap)
+            binding.iconView.setImageBitmap(imageBitmap)
 
             // There are no request codes
             //val data: Intent? = result.data
@@ -126,13 +123,16 @@ class CitizenViewActivity : AppCompatActivity(), OnMapReadyCallback {
         apiInterface.getCitizen(intent.extras!!.getInt("id")).enqueue(object : Callback<Citizen> {
             override fun onResponse(call: Call<Citizen>?, response: Response<Citizen>?) {
                 if(response?.body() != null&&response.code()==200){
-
-                    date = SimpleDateFormat("yyyy-MM-dd").parse(response.body()!!.birthday)
-                    findViewById<EditText>(R.id.editTextFirstName).setText(response.body()!!.firstName)
-                    findViewById<EditText>(R.id.editTextLastName).setText(response.body()!!.lastName)
-                    findViewById<Button>(R.id.editDateBtn).text = response.body()!!.birthday
-                    findViewById<EditText>(R.id.editTextCivilStatus).setText(response.body()!!.civilStatus)
-                    dawaLookup(response.body()!!.address)
+                    val citizen=response.body() as Citizen
+                    val dat= SimpleDateFormat("yyyy-MM-dd",Locale.ENGLISH).parse(citizen.birthday)
+                    if(dat!=null){
+                        date = dat
+                    }
+                    binding.editTextFirstName.setText(citizen.firstName)
+                    binding.editTextLastName.setText(citizen.lastName)
+                    binding.editTextCivilStatus.setText(citizen.civilStatus)
+                    binding.editDateBtn.text=citizen.birthday
+                    dawaLookup(citizen.address)
                 }
             }
             override fun onFailure(call: Call<Citizen>?, t: Throwable?) {
@@ -141,7 +141,7 @@ class CitizenViewActivity : AppCompatActivity(), OnMapReadyCallback {
         })
     }
 
-    fun showDatePickerDialog() {
+    private fun showDatePickerDialog() {
         val newFragment = DatePickerFragment()
         val args = Bundle()
         args.putLong("time",date.time)
@@ -171,6 +171,6 @@ class CitizenViewActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(p0: GoogleMap) {
         mMap=p0
         p0.mapType = GoogleMap.MAP_TYPE_NORMAL
-        findViewById<MapView>(R.id.mapView).onResume()
+        binding.mapView.onResume()
     }
 }

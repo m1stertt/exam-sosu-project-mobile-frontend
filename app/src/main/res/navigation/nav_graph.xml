@@ -2,7 +2,8 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph">
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/citizenFragment">
     <activity
         android:id="@+id/main_activity"
         android:name="com.example.exam_sosu_project_mobile_frontend.MainActivity"
@@ -24,4 +25,21 @@
         android:label="activity_citizen_view"
         tools:layout="@layout/activity_citizen_view" />
     <fragment android:id="@+id/placeholder" />
+    <fragment
+        android:id="@+id/citizenFragment"
+        android:name="com.example.exam_sosu_project_mobile_frontend.ui.CitizenFragment"
+        android:label="citizen_item_list"
+        tools:layout="@layout/citizen_item_list" >
+        <action
+            android:id="@+id/action_citizenFragment_to_mapsActivity"
+            app:destination="@id/mapsActivity" />
+        <action
+            android:id="@+id/action_citizenFragment_to_citizenViewActivity"
+            app:destination="@id/citizenViewActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/mapsActivity"
+        android:name="com.example.exam_sosu_project_mobile_frontend.MapsActivity"
+        android:label="activity_maps"
+        tools:layout="@layout/activity_maps" />
 </navigation>

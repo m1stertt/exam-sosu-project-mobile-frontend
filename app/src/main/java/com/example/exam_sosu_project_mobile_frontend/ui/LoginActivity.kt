@@ -8,8 +8,8 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import com.example.exam_sosu_project_mobile_frontend.ApiInterface
-import com.example.exam_sosu_project_mobile_frontend.Login
+import com.example.exam_sosu_project_mobile_frontend.interfaces.ApiInterface
+import com.example.exam_sosu_project_mobile_frontend.entities.Login
 import com.example.exam_sosu_project_mobile_frontend.R
 import com.example.exam_sosu_project_mobile_frontend.StudentActivity
 import retrofit2.Call
@@ -37,7 +37,10 @@ class LoginActivity : AppCompatActivity() {
                         val token= response.headers().get("Set-Cookie")?.substringBefore(';')
                         if (token != null) {
                             val sharedPreferences = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE)
-                            sharedPreferences.edit().putString("token", token).apply()
+                            val editor=sharedPreferences.edit()
+                            editor.putString("token", token)
+                            editor.putString("username", response.body()?.username)
+                            editor.apply()
                             intent= Intent(this@LoginActivity, StudentActivity::class.java)
                             startActivity(intent)
                         }

@@ -41,7 +41,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="2"
                     android:padding="5dp"
-                    android:text="First name:"
+                    android:text="@string/first_name_"
                     app:autoSizeTextType="uniform" />
 
                 <EditText
@@ -50,7 +50,8 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:hint="First name"
+                    android:autofillHints="name"
+                    android:hint="@string/first_name"
                     android:inputType="textPersonName" />
 
             </LinearLayout>
@@ -67,7 +68,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="2"
                     android:padding="5dp"
-                    android:text="Last name:"
+                    android:text="@string/last_name_"
                     app:autoSizeTextType="uniform" />
 
                 <EditText
@@ -76,7 +77,8 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:hint="Last name"
+                    android:autofillHints="name"
+                    android:hint="@string/last_name"
                     android:inputType="textPersonName" />
             </LinearLayout>
 
@@ -92,7 +94,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="2"
                     android:padding="5dp"
-                    android:text="Birthday:"
+                    android:text="@string/birthday_"
                     app:autoSizeTextType="uniform" />
 
                 <Button
@@ -115,7 +117,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="2"
                     android:padding="5dp"
-                    android:text="Civil status:"
+                    android:text="@string/civil_status_"
                     app:autoSizeTextType="uniform" />
 
                 <EditText
@@ -124,7 +126,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:hint="Civil Status"
+                    android:autofillHints="name"
+                    android:hint="@string/civil_status"
                     android:inputType="text" />
             </LinearLayout>
 
@@ -137,7 +140,7 @@
                     android:id="@+id/addressTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Address" />
+                    android:hint="@string/address" />
 
             </LinearLayout>
 
@@ -145,7 +148,7 @@
                 android:id="@+id/createBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Create" />
+                android:text="@string/create" />
 
         </LinearLayout>
     </ScrollView>

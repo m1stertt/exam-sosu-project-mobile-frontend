@@ -7,9 +7,9 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doAfterTextChanged
-import com.example.exam_sosu_project_mobile_frontend.ApiInterface
+import com.example.exam_sosu_project_mobile_frontend.interfaces.ApiInterface
 import com.example.exam_sosu_project_mobile_frontend.DatePickerFragment
-import com.example.exam_sosu_project_mobile_frontend.DawaApiInterface
+import com.example.exam_sosu_project_mobile_frontend.interfaces.DawaApiInterface
 import com.example.exam_sosu_project_mobile_frontend.databinding.ActivityCitizenCreateBinding
 import com.example.exam_sosu_project_mobile_frontend.entities.Citizen
 import com.example.exam_sosu_project_mobile_frontend.entities.DawaAutoCompleteAddress

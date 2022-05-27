@@ -1,6 +1,8 @@
-package com.example.exam_sosu_project_mobile_frontend
+package com.example.exam_sosu_project_mobile_frontend.interfaces
 
 import android.content.Context
+import com.example.exam_sosu_project_mobile_frontend.entities.Login
+import com.example.exam_sosu_project_mobile_frontend.R
 import com.example.exam_sosu_project_mobile_frontend.entities.Citizen
 import com.example.exam_sosu_project_mobile_frontend.ui.citizens.CreateCitizenDto
 import okhttp3.OkHttpClient
@@ -52,10 +54,8 @@ interface ApiInterface {
                         chain.proceed(request.build())
                     }.build()).build()
             return retrofit.create(ApiInterface::class.java)
-
         }
         fun create(): ApiInterface {
-
             val retrofit = Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
                 .baseUrl("$BASE_URL/").build()

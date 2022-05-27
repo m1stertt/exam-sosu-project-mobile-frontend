@@ -1,4 +1,4 @@
-package com.example.exam_sosu_project_mobile_frontend
+package com.example.exam_sosu_project_mobile_frontend.interfaces
 
 import android.content.Context
 import com.example.exam_sosu_project_mobile_frontend.entities.DawaAddress
