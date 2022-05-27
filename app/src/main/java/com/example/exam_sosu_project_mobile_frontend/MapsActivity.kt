@@ -89,14 +89,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(LatLng(lat, lng)))
         googleMap.moveCamera(CameraUpdateFactory.zoomTo(16f))
         googleMap.mapType = GoogleMap.MAP_TYPE_NORMAL
-        /*if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                googleMap.isMyLocationEnabled=true
-            }
-        }
-        else {
-            googleMap.isMyLocationEnabled=true;
-        }*/
         requestPermissions()
         if (!isPermissionGiven()) return binding.map.onResume()
         startListening()
@@ -132,7 +124,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private fun requestPermissions() {
         if (!isPermissionGiven()) {
-            //Log.d(TAG, "permission denied to USE GPS - requesting it")
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
                 requestPermissions(permissions, 1)
         }

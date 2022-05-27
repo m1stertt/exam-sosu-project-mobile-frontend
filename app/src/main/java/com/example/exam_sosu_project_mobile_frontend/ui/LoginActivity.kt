@@ -20,10 +20,35 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        val apiInterface = ApiInterface.create(this)
+        val sharedPreferences = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE)
+        val token=sharedPreferences.getString("token",null)
+        if (token != null) { //Found a session token, attempt to retrieve user.
+            apiInterface.getLogin().enqueue(object : Callback<Login> {
+                override fun onResponse(call: Call<Login>?, response: Response<Login>?) {
+                    if (response != null&&response.code()==200) {
+                        intent= Intent(this@LoginActivity, StudentActivity::class.java)
+                        startActivity(intent)
+                        return
+                    }else{
+                        sharedPreferences.edit().remove("token").apply()
+                        initiate()
+                    }
+                }
+                override fun onFailure(call: Call<Login>?, t: Throwable?) {
+                    sharedPreferences.edit().remove("token").apply()
+                    initiate()
+                }
+            })
+        }else{
+            initiate()
+        }
+    }
+    private fun initiate(){
+        val apiInterface = ApiInterface.create(this)
         val usernameEditText: EditText = findViewById(R.id.activity_main_usernameEditText)
         val passwordEditText: EditText = findViewById(R.id.activity_main_passwordEditText)
         val loginButton: Button = findViewById(R.id.activity_main_loginButton)
-        val apiInterface = ApiInterface.create(this)
         loginButton.setOnClickListener{
             if (usernameEditText.text.isEmpty() && passwordEditText.text.isEmpty()
             ) {

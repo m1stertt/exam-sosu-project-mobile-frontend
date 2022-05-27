@@ -17,7 +17,7 @@ class DatePickerFragment : DialogFragment(), DatePickerDialog.OnDateSetListener 
         val c = Calendar.getInstance()
         if(arguments!=null&&arguments?.getLong("time")!=null){
             val currDate: Long = arguments?.getLong("time")!!
-            c.timeInMillis = currDate;
+            c.timeInMillis = currDate
         }
         val year = c[Calendar.YEAR]
         val month = c[Calendar.MONTH]
