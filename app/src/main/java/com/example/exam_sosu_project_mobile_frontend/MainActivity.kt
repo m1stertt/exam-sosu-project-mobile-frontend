@@ -1,46 +1,14 @@
 package com.example.exam_sosu_project_mobile_frontend
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.exam_sosu_project_mobile_frontend.entities.Login
-import com.example.exam_sosu_project_mobile_frontend.interfaces.ApiInterface
 import com.example.exam_sosu_project_mobile_frontend.ui.LoginActivity
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val apiInterface = ApiInterface.create(this)
-        val sharedPreferences = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE)
-        val token=sharedPreferences.getString("token",null)
-        if (token != null) { //Found a session token, attempt to retrieve user.
-            apiInterface.getLogin().enqueue(object : Callback<Login> {
-                override fun onResponse(call: Call<Login>?, response: Response<Login>?) {
-                    if (response != null&&response.code()==200) {
-                        intent= Intent(this@MainActivity, StudentActivity::class.java)
-                        startActivity(intent)
-                        return
-                    }else{
-                        sharedPreferences.edit().remove("token").apply()
-                        initiate()
-                    }
-                }
-                override fun onFailure(call: Call<Login>?, t: Throwable?) {
-                    sharedPreferences.edit().remove("token").apply()
-                    initiate()
-                }
-            })
-        }else{
-            initiate()
-        }
-    }
-
-    private fun initiate(){
         intent= Intent(this@MainActivity, LoginActivity::class.java)
         startActivity(intent)
     }
