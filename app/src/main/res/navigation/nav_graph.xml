@@ -24,7 +24,6 @@
         android:name="com.example.exam_sosu_project_mobile_frontend.ui.CitizenViewActivity"
         android:label="activity_citizen_view"
         tools:layout="@layout/activity_citizen_view" />
-    <fragment android:id="@+id/placeholder" />
     <fragment
         android:id="@+id/citizenFragment"
         android:name="com.example.exam_sosu_project_mobile_frontend.ui.CitizenFragment"
@@ -42,4 +41,9 @@
         android:name="com.example.exam_sosu_project_mobile_frontend.MapsActivity"
         android:label="activity_maps"
         tools:layout="@layout/activity_maps" />
+    <activity
+        android:id="@+id/citizenCreateActivity"
+        android:name="com.example.exam_sosu_project_mobile_frontend.ui.CitizenCreateActivity"
+        android:label="activity_citizen_create"
+        tools:layout="@layout/activity_citizen_create" />
 </navigation>

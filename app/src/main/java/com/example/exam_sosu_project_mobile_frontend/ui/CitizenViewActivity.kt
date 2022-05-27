@@ -7,6 +7,7 @@ import android.graphics.Bitmap
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.example.exam_sosu_project_mobile_frontend.interfaces.ApiInterface
@@ -35,13 +36,9 @@ import java.util.*
 
 class CitizenViewActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var binding: ActivityCitizenViewBinding
-
     private lateinit var mSocket: Socket
-
     lateinit var mMap: GoogleMap
-
     lateinit var date:Date
-
     var x: Double=0.0
     var y: Double=0.0
 
@@ -133,12 +130,19 @@ class CitizenViewActivity : AppCompatActivity(), OnMapReadyCallback {
                     binding.editTextCivilStatus.setText(citizen.civilStatus)
                     binding.editDateBtn.text=citizen.birthday
                     dawaLookup(citizen.address)
+                }else{
+                    issueRetrievingCitizen()
                 }
             }
             override fun onFailure(call: Call<Citizen>?, t: Throwable?) {
-                Log.d("StudentActivity","onFailure")
+                issueRetrievingCitizen()
             }
         })
+    }
+
+    private fun issueRetrievingCitizen(){
+        Toast.makeText(applicationContext,"Issue retrieving the citizen.", Toast.LENGTH_SHORT).show()
+        finish()
     }
 
     private fun showDatePickerDialog() {
