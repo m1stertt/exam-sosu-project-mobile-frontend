@@ -7,11 +7,13 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.recyclerview.widget.RecyclerView
 import com.example.exam_sosu_project_mobile_frontend.databinding.ActivityStudentBinding
 import com.example.exam_sosu_project_mobile_frontend.entities.Citizen
+import com.example.exam_sosu_project_mobile_frontend.interfaces.ApiInterface
 import com.example.exam_sosu_project_mobile_frontend.ui.CitizenCreateActivity
 import com.example.exam_sosu_project_mobile_frontend.ui.CitizenFragment
 import com.example.exam_sosu_project_mobile_frontend.ui.MyCitizenRecyclerViewAdapter
@@ -23,7 +25,7 @@ import retrofit2.Response
 
 class StudentActivity : AppCompatActivity() {
 
-    private lateinit var appBarConfiguration: AppBarConfiguration
+    //private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityStudentBinding
 
 
@@ -46,6 +48,8 @@ class StudentActivity : AppCompatActivity() {
             val intent= Intent(it.context, CitizenCreateActivity::class.java)
             startActivity(intent)
         }
+        val welcome=findViewById<TextView>(R.id.welcomeText)
+        welcome.text = getString(R.string.welcome_message,getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE).getString("username",""))
 
         getCitizens()
 
