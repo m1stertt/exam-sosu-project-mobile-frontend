@@ -1,22 +1,16 @@
 package com.example.exam_sosu_project_mobile_frontend.ui
 
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.exam_sosu_project_mobile_frontend.MapsActivity
 import com.example.exam_sosu_project_mobile_frontend.databinding.CitizenItemBinding
-import com.example.exam_sosu_project_mobile_frontend.entities.Address
 import com.example.exam_sosu_project_mobile_frontend.entities.Citizen
 import com.example.exam_sosu_project_mobile_frontend.entities.DawaAddress
 import com.example.exam_sosu_project_mobile_frontend.interfaces.DawaApiInterface
-import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

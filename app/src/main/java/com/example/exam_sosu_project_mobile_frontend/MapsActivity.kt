@@ -5,7 +5,6 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.location.Geocoder
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
@@ -14,24 +13,19 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import com.example.exam_sosu_project_mobile_frontend.databinding.ActivityMapsBinding
-import com.example.exam_sosu_project_mobile_frontend.databinding.ActivityStudentBinding
 import com.example.exam_sosu_project_mobile_frontend.ui.CitizenViewActivity
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
-import java.util.*
-import kotlin.math.abs
+import com.google.android.gms.maps.model.*
 
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var binding: ActivityMapsBinding
+    private var locationMarker:Marker? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -86,40 +80,49 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             lat = lat1
             lng = lng1
         }
-        googleMap.addMarker(
-            MarkerOptions()
-                .position(LatLng(lat, lng))
-                .title(address)
-        )
-
+        val destination=googleMap.addMarker(MarkerOptions().position(LatLng(lat, lng)).title(address))
+        googleMap.setOnMarkerClickListener {
+            val cu=CameraUpdateFactory.newLatLngZoom(it.position,16f)
+            googleMap.animateCamera(cu)
+            false
+        }
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(LatLng(lat, lng)))
         googleMap.moveCamera(CameraUpdateFactory.zoomTo(16f))
         googleMap.mapType = GoogleMap.MAP_TYPE_NORMAL
-        //googleMap.uiSettings.
-        //Initialize Google Play Services
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ContextCompat.checkSelfPermission(this,
-                    Manifest.permission.ACCESS_FINE_LOCATION)
-                == PackageManager.PERMISSION_GRANTED) {
-                //buildGoogleApiClient();
+        /*if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                 googleMap.isMyLocationEnabled=true
             }
         }
         else {
             googleMap.isMyLocationEnabled=true;
-        }
+        }*/
         requestPermissions()
         if (!isPermissionGiven()) return binding.map.onResume()
         startListening()
         val locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
         val location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
-        // The type of location is Location? - it can be null... handle cases
 
         if (location != null) {
-            Log.d("MapsActivity",location.toString())
-            val zoomRatio:Float= ((abs(lat-location.latitude)+abs(lng-location.longitude))/2*7.5).toFloat()
-            googleMap.moveCamera(CameraUpdateFactory.zoomTo(zoomRatio))
-            googleMap.moveCamera(CameraUpdateFactory.newLatLng(LatLng((lat+location.latitude)/2,(lng+location.longitude)/2)))
+            val builder = LatLngBounds.Builder()
+            if (destination != null) {
+                builder.include(destination.position)
+            }
+            builder.include(LatLng(location.latitude,location.longitude))
+            val bounds = builder.build()
+            var initial=false;
+            binding.map.viewTreeObserver.addOnGlobalLayoutListener {
+                if(initial) return@addOnGlobalLayoutListener
+                initial=true
+                googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds,100))
+            }
+
+            locationMarker=googleMap.addMarker(
+                MarkerOptions().position(LatLng(location.latitude,location.longitude)).title("Your location").icon(
+                    BitmapDescriptorFactory.fromResource(android.R.drawable.presence_online))
+            )
+        }else{
+            Toast.makeText(applicationContext, "Unable to retrieve location", Toast.LENGTH_SHORT).show()
         }
         binding.map.onResume()
     }
@@ -153,7 +156,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             myLocationListener = object : LocationListener {
 
                 override fun onLocationChanged(location: Location) {
-
+                    if(locationMarker!=null){
+                        locationMarker!!.position= LatLng(location.latitude,location.longitude)
+                    }
                 }
 
                 override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {

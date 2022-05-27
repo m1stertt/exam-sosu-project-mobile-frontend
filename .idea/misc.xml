@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Github/exam-sosu-project-mobile-frontend/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2135" />
         <entry key="..\:/Github/exam-sosu-project-mobile-frontend/app/src/main/res/drawable/border.xml" value="0.2135" />
         <entry key="..\:/Github/exam-sosu-project-mobile-frontend/app/src/main/res/layout/activity_citizen_create.xml" value="0.1" />
         <entry key="..\:/Github/exam-sosu-project-mobile-frontend/app/src/main/res/layout/activity_citizen_view.xml" value="0.22" />
@@ -13,6 +14,7 @@
         <entry key="..\:/Github/exam-sosu-project-mobile-frontend/app/src/main/res/layout/activity_teacher.xml" value="0.18802083333333333" />
         <entry key="..\:/Github/exam-sosu-project-mobile-frontend/app/src/main/res/layout/citizen_item.xml" value="0.18802083333333333" />
         <entry key="..\:/Github/exam-sosu-project-mobile-frontend/app/src/main/res/layout/citizen_item_list.xml" value="0.18802083333333333" />
+        <entry key="..\:/Github/exam-sosu-project-mobile-frontend/app/src/main/res/layout/content_maps.xml" value="0.20534904805077062" />
         <entry key="..\:/Github/exam-sosu-project-mobile-frontend/app/src/main/res/layout/content_student.xml" value="0.2" />
         <entry key="..\:/Github/exam-sosu-project-mobile-frontend/app/src/main/res/layout/content_teacher.xml" value="0.1" />
         <entry key="..\:/Github/exam-sosu-project-mobile-frontend/app/src/main/res/layout/fragment_date_picker.xml" value="0.19837537409149208" />
