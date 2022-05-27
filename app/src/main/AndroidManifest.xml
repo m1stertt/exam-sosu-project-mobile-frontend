@@ -22,7 +22,7 @@
         android:theme="@style/Theme.Examsosuprojectmobilefrontend"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".ui.CitizenCreateActivity"
+            android:name=".ui.citizens.CitizenCreateActivity"
             android:exported="false" />
 
         <meta-data
@@ -37,7 +37,7 @@
             android:exported="false"
             android:theme="@style/Theme.Examsosuprojectmobilefrontend.NoActionBar"/>
         <activity
-            android:name=".ui.CitizenViewActivity"
+            android:name=".ui.citizens.CitizenViewActivity"
             android:exported="false"
             android:theme="@style/Theme.Examsosuprojectmobilefrontend.NoActionBar"/>
         <activity

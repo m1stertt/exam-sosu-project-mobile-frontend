@@ -1,4 +1,4 @@
-package com.example.exam_sosu_project_mobile_frontend
+package com.example.exam_sosu_project_mobile_frontend.ui
 
 import android.app.DatePickerDialog
 import android.app.Dialog

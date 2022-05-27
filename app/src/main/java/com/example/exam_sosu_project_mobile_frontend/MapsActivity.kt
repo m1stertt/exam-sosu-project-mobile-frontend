@@ -10,13 +10,12 @@ import android.location.LocationListener
 import android.location.LocationManager
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.exam_sosu_project_mobile_frontend.databinding.ActivityMapsBinding
-import com.example.exam_sosu_project_mobile_frontend.ui.CitizenViewActivity
+import com.example.exam_sosu_project_mobile_frontend.ui.citizens.CitizenViewActivity
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -60,6 +59,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     /**
     val i = Intent(this@WhateverActivity, MapsActivity::class.java)
+    i.putExtra("address",string)
     i.putExtra("latitude",latitude);
     i.putExtra("longitude",longitude);
     startActivity(i);
@@ -68,7 +68,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         val extras = intent.extras ?: return
         val address = extras.getString("address")
-        title = address
         val lat1 = extras.get("latitude")
         val lng1 = extras.get("longitude")
         var lat = 0.0
@@ -80,6 +79,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             lat = lat1
             lng = lng1
         }
+        title = address ?: "$lat, $lng"
         val destination=googleMap.addMarker(MarkerOptions().position(LatLng(lat, lng)).title(address))
         googleMap.setOnMarkerClickListener {
             val cu=CameraUpdateFactory.newLatLngZoom(it.position,16f)
@@ -110,7 +110,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             }
             builder.include(LatLng(location.latitude,location.longitude))
             val bounds = builder.build()
-            var initial=false;
+            var initial=false
             binding.map.viewTreeObserver.addOnGlobalLayoutListener {
                 if(initial) return@addOnGlobalLayoutListener
                 initial=true
@@ -145,7 +145,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         return true
     }
 
-    var myLocationListener: LocationListener? = null
+    private var myLocationListener: LocationListener? = null
 
     @SuppressLint("MissingPermission")
     private fun startListening() {

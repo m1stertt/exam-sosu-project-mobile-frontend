@@ -1,4 +1,4 @@
-package com.example.exam_sosu_project_mobile_frontend.ui
+package com.example.exam_sosu_project_mobile_frontend.ui.citizens
 
 import android.app.Activity
 import android.content.ActivityNotFoundException
@@ -11,7 +11,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.example.exam_sosu_project_mobile_frontend.interfaces.ApiInterface
-import com.example.exam_sosu_project_mobile_frontend.DatePickerFragment
+import com.example.exam_sosu_project_mobile_frontend.ui.DatePickerFragment
 import com.example.exam_sosu_project_mobile_frontend.interfaces.DawaApiInterface
 import com.example.exam_sosu_project_mobile_frontend.R
 import com.example.exam_sosu_project_mobile_frontend.databinding.ActivityCitizenViewBinding

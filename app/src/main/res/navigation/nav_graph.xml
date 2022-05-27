@@ -21,12 +21,12 @@
         tools:layout="@layout/activity_student" />
     <activity
         android:id="@+id/citizenViewActivity"
-        android:name="com.example.exam_sosu_project_mobile_frontend.ui.CitizenViewActivity"
+        android:name="com.example.exam_sosu_project_mobile_frontend.ui.citizens.CitizenViewActivity"
         android:label="activity_citizen_view"
         tools:layout="@layout/activity_citizen_view" />
     <fragment
         android:id="@+id/citizenFragment"
-        android:name="com.example.exam_sosu_project_mobile_frontend.ui.CitizenFragment"
+        android:name="com.example.exam_sosu_project_mobile_frontend.ui.citizens.CitizenFragment"
         android:label="citizen_item_list"
         tools:layout="@layout/citizen_item_list" >
         <action
@@ -43,7 +43,7 @@
         tools:layout="@layout/activity_maps" />
     <activity
         android:id="@+id/citizenCreateActivity"
-        android:name="com.example.exam_sosu_project_mobile_frontend.ui.CitizenCreateActivity"
+        android:name="com.example.exam_sosu_project_mobile_frontend.ui.citizens.CitizenCreateActivity"
         android:label="activity_citizen_create"
         tools:layout="@layout/activity_citizen_create" />
 </navigation>

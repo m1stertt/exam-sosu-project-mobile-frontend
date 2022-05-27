@@ -55,7 +55,7 @@
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragment_container_view"
-            android:name="com.example.exam_sosu_project_mobile_frontend.ui.CitizenFragment"
+            android:name="com.example.exam_sosu_project_mobile_frontend.ui.citizens.CitizenFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 

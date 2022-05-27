@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.CitizenViewActivity">
+    tools:context=".ui.citizens.CitizenViewActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -23,18 +23,20 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="70dp">
+        android:layout_marginTop="55dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingTop="25dp">
 
             <ImageView
                 android:id="@+id/iconView"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:layout_gravity="center_horizontal"
+                android:backgroundTint="#B50404"
                 android:contentDescription="Profile picture of citizen"
                 tools:srcCompat="@tools:sample/avatars" />
 
@@ -58,8 +60,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:ems="10"
                     android:autofillHints="name"
+                    android:ems="10"
                     android:hint="@string/first_name"
                     android:inputType="textPersonName" />
 
@@ -85,8 +87,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:ems="10"
                     android:autofillHints="name"
+                    android:ems="10"
                     android:hint="@string/last_name"
                     android:inputType="textPersonName" />
             </LinearLayout>
@@ -134,8 +136,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:ems="10"
                     android:autofillHints=""
+                    android:ems="10"
                     android:hint="@string/civil_status"
                     android:inputType="text" />
             </LinearLayout>
@@ -165,15 +167,12 @@
         </LinearLayout>
     </ScrollView>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <ImageButton
         android:id="@+id/addImageBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:clickable="true"
-        android:focusable="true"
-        app:fabSize="mini"
+        android:src="@android:drawable/ic_menu_camera"
         app:layout_anchor="@id/iconView"
-        app:layout_anchorGravity="top|right|end"
-        app:srcCompat="@android:drawable/ic_menu_camera" />
+        app:layout_anchorGravity="right|top|end"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
