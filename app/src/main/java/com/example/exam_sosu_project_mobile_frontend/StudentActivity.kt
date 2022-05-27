@@ -8,6 +8,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.exam_sosu_project_mobile_frontend.databinding.ActivityStudentBinding
@@ -20,31 +21,20 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-
 class StudentActivity : AppCompatActivity() {
-
-    //private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityStudentBinding
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityStudentBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         setSupportActionBar(binding.toolbar)
-
-        val btn=findViewById<Button>(R.id.createCitizenBtn)
-        btn.setOnClickListener {
+        findViewById<Button>(R.id.createCitizenBtn).setOnClickListener {
             val intent= Intent(it.context, CitizenCreateActivity::class.java)
             startActivity(intent)
         }
-        val welcome=findViewById<TextView>(R.id.welcomeText)
-        welcome.text = getString(R.string.welcome_message,getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE).getString("username",""))
-
+        findViewById<TextView>(R.id.welcomeText).text = getString(R.string.welcome_message,getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE).getString("username",""))
         getCitizens()
-
     }
 
     private fun getCitizens(){
@@ -52,21 +42,22 @@ class StudentActivity : AppCompatActivity() {
         apiInterface.getCitizens().enqueue(object : Callback<List<Citizen>> {
             override fun onResponse(call: Call<List<Citizen>>?, response: Response<List<Citizen>>?) {
                 if(response?.body() != null&&response.code()==200){
-                    Log.d("StudentActivity","onResponse")
+                    Log.d("StudentActivity","getCitizens onResponse")
                     val fragment=supportFragmentManager.findFragmentById(R.id.fragment_container_view)
                     (((fragment as CitizenFragment).view as RecyclerView).adapter as MyCitizenRecyclerViewAdapter).updateData(
                         response.body()!!
                     )
+                }else{
+                    Toast.makeText(applicationContext,"Issue retrieving the citizens.", Toast.LENGTH_SHORT).show()
                 }
             }
             override fun onFailure(call: Call<List<Citizen>>?, t: Throwable?) {
-                Log.d("StudentActivity","onFailure")
+                Toast.makeText(applicationContext,"Issue retrieving the citizens.", Toast.LENGTH_SHORT).show()
             }
         })
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
         return true
     }
@@ -80,10 +71,4 @@ class StudentActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
-
-    /*override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment_content_student)
-        return navController.navigateUp(appBarConfiguration)
-                || super.onSupportNavigateUp()
-    }*/
 }

@@ -3,10 +3,7 @@ package com.example.exam_sosu_project_mobile_frontend
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import com.example.exam_sosu_project_mobile_frontend.entities.Login
 import com.example.exam_sosu_project_mobile_frontend.interfaces.ApiInterface
 import com.example.exam_sosu_project_mobile_frontend.ui.LoginActivity

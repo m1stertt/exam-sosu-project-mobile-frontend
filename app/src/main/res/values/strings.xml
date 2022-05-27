@@ -2,6 +2,7 @@
     <string name="app_name">Health Journal</string>
 
     <string name="welcome_message">Welcome back %1$s</string>
+    <string name="full_name">%1$s %2$s</string>
     <string name="login_form_title">Login</string>
     <string name="login_form_username">Username</string>
     <string name="login_form_password">Password</string>

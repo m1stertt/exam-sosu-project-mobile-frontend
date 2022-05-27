@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doAfterTextChanged
 import com.example.exam_sosu_project_mobile_frontend.interfaces.ApiInterface
@@ -23,16 +24,16 @@ class CitizenCreateActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCitizenCreateBinding
     lateinit var adapter: ArrayAdapter<DawaAutoCompleteAddress>
     var running:Boolean=false
-    var addressClick:Boolean=false;
+    var addressClick:Boolean=false
+    private val address= CitizenAddressDto("Spangsbjerg Kirkevej 103",6700)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCitizenCreateBinding.inflate(layoutInflater)
         setContentView(binding.root)
         adapter=ArrayAdapter<DawaAutoCompleteAddress>(this@CitizenCreateActivity,android.R.layout.simple_list_item_1,ArrayList())
         //setSupportActionBar(binding.toolbar)
-        //getCitizen()
         binding.editDateBtn.setOnClickListener {
-            showDatePickerDialog();
+            showDatePickerDialog()
         }
         binding.createBtn.setOnClickListener {
             createCitizen()
@@ -47,17 +48,17 @@ class CitizenCreateActivity : AppCompatActivity() {
                 }
             }else{
                 adapter.clear()
-                addressClick=false;
+                addressClick=false
             }
         }
         binding.addressTextView.setAdapter(adapter)
         binding.addressTextView.onItemClickListener=object:AdapterView.OnItemClickListener{
             override fun onItemClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                //adapter.getItem(p2)
                 if(adapter.getItem(p2)==null) return
-                addressClick=true;
-                binding.addressTextView.setText(adapter.getItem(p2)!!.adresse.vejnavn+" "+adapter.getItem(p2)!!.adresse.husnr)
-                Log.d("Selected",adapter.getItem(p2).toString())
+                addressClick=true
+                address.street=adapter.getItem(p2)!!.adresse.vejnavn+" "+adapter.getItem(p2)!!.adresse.husnr
+                address.postCode=adapter.getItem(p2)!!.adresse.postnr.toInt()
+                binding.addressTextView.setText(address.street)
             }
 
         }
@@ -65,7 +66,6 @@ class CitizenCreateActivity : AppCompatActivity() {
 
     private fun createCitizen(){
         val apiInterface = ApiInterface.create(this)
-        val address= CitizenAddressDto("Finlandsgade 16, 1.TH",6700)
         val citizen=CreateCitizenDto(binding.editTextFirstName.text.toString(),
             binding.editTextLastName.text.toString(),
             binding.editDateBtn.text.toString(),
@@ -73,10 +73,11 @@ class CitizenCreateActivity : AppCompatActivity() {
         apiInterface.createCitizen(citizen
         ).enqueue(object : Callback<Citizen> {
             override fun onResponse(call: Call<Citizen>?, response: Response<Citizen>?) {
-                Log.d("CreateCitizen",response.toString());
-                Log.d("CreateCitizen",response?.body().toString());
+                Log.d("CreateCitizen",response.toString())
+                Log.d("CreateCitizen",response?.body().toString())
             }
             override fun onFailure(call: Call<Citizen>?, t: Throwable?) {
+                Toast.makeText(applicationContext,"Issue creating the citizen.", Toast.LENGTH_SHORT).show()
                 Log.d("CreateCitizenActivity","onFailure")
             }
         })
@@ -88,7 +89,7 @@ class CitizenCreateActivity : AppCompatActivity() {
         supportFragmentManager
             .setFragmentResultListener("time", this) { time, bundle ->
                 val result = bundle.getLong("bundleKey")
-                binding.editDateBtn.text=SimpleDateFormat("yyyy-MM-dd").format(Date(result))
+                binding.editDateBtn.text=SimpleDateFormat("yyyy-MM-dd",Locale.getDefault()).format(Date(result))
             }
     }
 
@@ -111,7 +112,7 @@ class CitizenCreateActivity : AppCompatActivity() {
                     running=false
                 }
                 override fun onFailure(call: Call<List<DawaAutoCompleteAddress>>?, t: Throwable?) {
-                    adapter.clear();
+                    adapter.clear()
                     Log.d("CitizenCreateActivity","onFailure"+t.toString())
                     running=false
                 }

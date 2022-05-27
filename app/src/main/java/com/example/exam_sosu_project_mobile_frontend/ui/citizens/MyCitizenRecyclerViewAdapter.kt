@@ -1,12 +1,15 @@
 package com.example.exam_sosu_project_mobile_frontend.ui.citizens
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.exam_sosu_project_mobile_frontend.MapsActivity
+import com.example.exam_sosu_project_mobile_frontend.R
 import com.example.exam_sosu_project_mobile_frontend.databinding.CitizenItemBinding
 import com.example.exam_sosu_project_mobile_frontend.entities.Citizen
 import com.example.exam_sosu_project_mobile_frontend.entities.DawaAddress
@@ -37,9 +40,8 @@ class MyCitizenRecyclerViewAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = values[position]
         //holder.idView.text = item.id
-        holder.contentView.text = item.firstName+" "+item.lastName
+        holder.contentView.text =holder.itemView.context.getString(R.string.full_name,item.firstName,item.lastName)
         holder.mapBtn.setOnClickListener {
-            //@todo
             val dawaApiInterface = DawaApiInterface.create(it.context)
             dawaApiInterface.get(item.address.street,item.address.postCode,"mini").enqueue(object :
                 Callback<List<DawaAddress>> {
@@ -53,10 +55,12 @@ class MyCitizenRecyclerViewAdapter(
                         intent.putExtra("id",item.id)
                         intent.putExtra("address",item.address.street)
                         it.context.startActivity(intent)
+                    }else{
+                        Toast.makeText(holder.itemView.context,"Issue retrieving the address.", Toast.LENGTH_SHORT).show()
                     }
                 }
                 override fun onFailure(call: Call<List<DawaAddress>>?, t: Throwable?) {
-                    //@todo
+                    Toast.makeText(it.context,"Issue retrieving the address.", Toast.LENGTH_SHORT).show()
                 }
             })
         }
@@ -78,6 +82,7 @@ class MyCitizenRecyclerViewAdapter(
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun updateData(viewModels: Collection<Citizen>) {
         items.clear()
         items.addAll(viewModels)
