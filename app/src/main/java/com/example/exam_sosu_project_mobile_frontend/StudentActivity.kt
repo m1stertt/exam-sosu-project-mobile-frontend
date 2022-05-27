@@ -9,15 +9,13 @@ import android.view.MenuItem
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.ui.AppBarConfiguration
 import androidx.recyclerview.widget.RecyclerView
 import com.example.exam_sosu_project_mobile_frontend.databinding.ActivityStudentBinding
 import com.example.exam_sosu_project_mobile_frontend.entities.Citizen
 import com.example.exam_sosu_project_mobile_frontend.interfaces.ApiInterface
-import com.example.exam_sosu_project_mobile_frontend.ui.CitizenCreateActivity
-import com.example.exam_sosu_project_mobile_frontend.ui.CitizenFragment
-import com.example.exam_sosu_project_mobile_frontend.ui.MyCitizenRecyclerViewAdapter
-import com.google.android.material.snackbar.Snackbar
+import com.example.exam_sosu_project_mobile_frontend.ui.citizens.CitizenCreateActivity
+import com.example.exam_sosu_project_mobile_frontend.ui.citizens.CitizenFragment
+import com.example.exam_sosu_project_mobile_frontend.ui.citizens.MyCitizenRecyclerViewAdapter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -36,12 +34,6 @@ class StudentActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbar)
-
-
-        binding.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
 
         val btn=findViewById<Button>(R.id.createCitizenBtn)
         btn.setOnClickListener {

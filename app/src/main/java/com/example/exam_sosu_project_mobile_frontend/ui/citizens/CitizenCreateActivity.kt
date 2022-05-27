@@ -1,4 +1,4 @@
-package com.example.exam_sosu_project_mobile_frontend.ui
+package com.example.exam_sosu_project_mobile_frontend.ui.citizens
 
 import android.os.Bundle
 import android.util.Log
@@ -8,13 +8,11 @@ import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doAfterTextChanged
 import com.example.exam_sosu_project_mobile_frontend.interfaces.ApiInterface
-import com.example.exam_sosu_project_mobile_frontend.DatePickerFragment
+import com.example.exam_sosu_project_mobile_frontend.ui.DatePickerFragment
 import com.example.exam_sosu_project_mobile_frontend.interfaces.DawaApiInterface
 import com.example.exam_sosu_project_mobile_frontend.databinding.ActivityCitizenCreateBinding
 import com.example.exam_sosu_project_mobile_frontend.entities.Citizen
 import com.example.exam_sosu_project_mobile_frontend.entities.DawaAutoCompleteAddress
-import com.example.exam_sosu_project_mobile_frontend.ui.citizens.CitizenAddressDto
-import com.example.exam_sosu_project_mobile_frontend.ui.citizens.CreateCitizenDto
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

@@ -1,4 +1,4 @@
-package com.example.exam_sosu_project_mobile_frontend.ui
+package com.example.exam_sosu_project_mobile_frontend.ui.citizens
 
 import android.content.Intent
 import android.view.LayoutInflater
